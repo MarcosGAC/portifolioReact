@@ -36,7 +36,7 @@ export default function Contact() {
           className="ml-[20%]"
         >
           <div className="flex items-center m-2  text-gray-200">
-            <a href="https://github.com/zBigode" >
+            <a href="https://github.com/MarcosGAC" >
             <img
               className="max-h-[50px] max-w-[50px] m-2"
               src={github}
