@@ -43,7 +43,7 @@ export default function Contact() {
               alt="logo github"
             />
             </a>
-            <a href="https://github.com/zBigode" >
+            <a href="https://github.com/MarcosGAC" >
             <p className="text-2xl text-[25px] pl-4">GitHub</p>
             </a>
           </div>
