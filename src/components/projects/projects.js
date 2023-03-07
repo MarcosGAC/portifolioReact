@@ -1,17 +1,25 @@
-import pokedex from "../../assets/pokedex.png";
-import netflix from "../../assets/netflix.png";
-import NLW from "../../assets/NLW.png";
-import organo from "../../assets/organo.png";
-import portifolionext from "../../assets/portifolionext.png";
-import CardProject from "../cardProject";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import CardProject from "../cardProject";
 
 export default function Projects(props) {
+
+  const [projetos, setProjetos] = useState([]);
+
+  useEffect(() => {
+      fetch('https://my-json-server.typicode.com/MarcosGAC/projetos-api/projetos')
+          .then(resposta => resposta.json())
+          .then(dados => {
+              setProjetos(dados)
+          })
+  }, [])
+
+
   useEffect(() => {
     Aos.init({ duration: 500 });
   }, []);
+
 
   return (
     <div className="mt-20 text-white  min-h-[100vh]">
@@ -22,32 +30,11 @@ export default function Projects(props) {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3  mt-20 gap-5">
-        <CardProject
-          name="A project based in netflix to train react Rooks"
-          img={netflix}
-          link={"https://estudo-net-flix.vercel.app/"}
-        />
-        <CardProject
-          name="Project developed for housing management"
-          img={NLW}
-          link={"https://habits-web-ten.vercel.app/"}
-        />
-        <CardProject
-          name="A pokédex created with Reactjs to practice"
-          img={pokedex}
-          link={"https://pokedex-pokeapi-two.vercel.app/"}
-        />
-        <CardProject
-          name="a project created based on a class from alura courses"
-          img={organo}
-          link={"https://organo-alura-cursos.vercel.app/"}
-        />
-        <CardProject
-          name="a new version of portifolio but now in nextjs"
-          img={portifolionext}
-          link={"https://portifolionext.vercel.app/"}
-        />
-        <CardProject name="shortly" />
+       {projetos.map(projeto =>{
+        return(
+          <CardProject name={projeto.name} img={projeto.img} link={projeto.link} key={projeto.id}/>
+        )
+       })}
       </div>
     </div>
   );
